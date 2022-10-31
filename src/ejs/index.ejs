@@ -2,16 +2,13 @@
 <%
     parameters = {
         title: 'Home',
-        description: 'Gulpを使用した最低限のフレームワークです。',
+        description: 'sitemap.xml を Google にクロールするようにシグナルを送るリンクを生成するフォームです。',
         ogp: {
             card: 'photo',
             account: 'Bredtn_1et',
             type: 'website',
-            image: 'img/hinomotogo.png'
+            image: 'https://source.unsplash.com/FYC5OIhMPSI'
         },
-        address: '北海道札幌市北区丸山町字辛亥五ノ村30-90',
-        postalcode: '001-0000',
-        tel: '000-000-0000',
         errFlag: false
     }
 -%>
@@ -20,22 +17,31 @@
 <%- include('partial/_header') -%>
 <main class="l-main">
     <section class="container py-5">
-        <h1><i class="fa-solid fa-fw fa-long-arrow-alt-up me-2" aria-hidden="true"></i><%= parameters.title %><small class="ml-2" id="hello"></small></h1>
+        <h1><i class="fa-solid fa-fw fa-home me-2" aria-hidden="true"></i><%= parameters.title %></h1>
         <p><%= parameters.description %></p>
-    </section>
-    <section class="container pb-5">
-        <h2>連絡先情報</h2>
-        <div class="list-group mb-3">
-            <div class="list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><%= parameters.author %></h5>
-                    <small>※住所・郵便番号・電話番号はいずれもダミーです</small>
+        <form>
+            <h2 class="mt-4 mb-3">入力</h2>
+            <div class="row mb-3">
+                <label for="sitemap-url" class="form-label col-12 col-lg-2"><code>sitemap.xml</code>のURL</label>
+                <div class="col-12 col-lg-10">
+                    <input type="url" id="sitemap-url" name="sitemap-url" class="form-control" placeholder="https://example.jp/sitemap.xml" aria-label="sitemap.xml の URL">
                 </div>
-                <p class="mb-1"><span class="c-address c-address_postalcode mr-1"><%= parameters.postalcode %></span> <span class="address"><%= parameters.address %></span></p>
-                <small><a href="tel:<%= parameters.tel %>"><span class="c-address c-address_tel mr-1"><%= parameters.tel %></span></a></small>
             </div>
-        </div>
-        <p>※住所・郵便番号・電話番号はいずれもダミーです。</p>
+            <div class="row mb-3">
+                <div class="col-12 col-lg-10 offset-lg-2">
+                    <button type="button" class="btn btn-primary mb-3" id="generate"><i class="fa-solid fa-fw fa-arrow-rotate-right me-2" aria-hidden="true"></i>生成する</button>
+                </div>
+            </div>
+        </form>
+        <form>
+            <h2 class="mt-4 mb-3">出力</h2>
+            <div class="row">
+                <label class="form-label col-12 col-lg-2">リンク</label>
+                <div class="col-12 col-lg-10">
+                    <a href="#" class="btn btn-success" id="signal-send-url" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-fw fa-signal me-2" aria-hidden="true"></i>Google へシグナルを送る</a>
+                </div>
+            </div>
+        </form>
     </section>
 </main>
 <%- include('partial/_footer') -%>
